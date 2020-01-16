@@ -1,6 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
+mongoose.set('useCreateIndex', true);
+
 const routes = require('./routes');
 
 const app = express();
