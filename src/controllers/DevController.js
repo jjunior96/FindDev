@@ -17,18 +17,20 @@ module.exports = {
     let dev = await Dev.findOne({ github_username });
 
     if (!dev) {
-      const apires = await axios.get(
+      const apiResponse = await axios.get(
         `https://api.github.com/users/${github_username}`
       );
 
-      const { name, avatar_url, bio } = apires.data;
+      const { name, avatar_url, bio } = apiResponse.data;
 
       const techsArray = parseStringAsArray(techs);
 
-      const location = {
+      const localizacao = {
         type: 'Point',
         coordinates: [longitude, latitude],
       };
+
+      // console.log(typeof location);
 
       dev = await Dev.create({
         github_username,
@@ -36,10 +38,10 @@ module.exports = {
         avatar_url,
         bio,
         techs: techsArray,
-        location,
+        localizacao,
       });
     }
 
-    return res.json({ dev });
+    return res.json(dev);
   },
 };
