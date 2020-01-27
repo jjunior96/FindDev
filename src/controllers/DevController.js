@@ -30,8 +30,6 @@ module.exports = {
         coordinates: [longitude, latitude],
       };
 
-      // console.log(typeof location);
-
       dev = await Dev.create({
         github_username,
         name,
